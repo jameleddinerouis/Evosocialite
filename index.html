@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evosocialite - Accueil</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            background-color: #050505;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            text-align: center;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .logo {
+            max-width: 250px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-weight: 900;
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        p {
+            color: #aaaaaa;
+            margin-bottom: 40px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            margin: 10px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        .btn-primary {
+            background-color: #ffffff;
+            color: #000000;
+            border: 2px solid #ffffff;
+        }
+        .btn-primary:hover {
+            background-color: #000000;
+            color: #ffffff;
+        }
+        .btn-secondary {
+            background-color: transparent;
+            color: #ffffff;
+            border: 2px solid #333333;
+        }
+        .btn-secondary:hover {
+            border-color: #ffffff;
+        }
+        .reviews-section {
+            margin-top: 80px;
+            text-align: left;
+        }
+        .reviews-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            max-height: 500px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+        .reviews-grid::-webkit-scrollbar { width: 8px; }
+        .reviews-grid::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        .review-card {
+            background-color: #111111;
+            padding: 20px;
+            border: 1px solid #222222;
+            border-radius: 6px;
+        }
+        .review-user {
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+        .review-note {
+            font-size: 0.8rem;
+            color: #888888;
+            margin-bottom: 10px;
+        }
+        .review-text {
+            color: #cccccc;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- METTRE TON LOGO ICI (Assure-toi que l'image s'appelle logo.jpg sur github) -->
+    <img src="logo.jpg" alt="Evosocialite Logo" class="logo">
+    
+    <h1>Evosocialite</h1>
+    <p>Abonnements digitaux premium. Activation instantanee. Qualite garantie.</p>
+
+    <a href="offres.html" class="btn btn-primary">Voir les offres (12 Mois)</a>
+    <br>
+    <a href="LIEN_DISCORD" class="btn btn-secondary" target="_blank">Rejoindre Discord</a>
+    <a href="LIEN_FACEBOOK" class="btn btn-secondary" target="_blank">Rejoindre Facebook</a>
+
+    <div class="reviews-section">
+        <h2>Avis de nos clients</h2>
+        <div class="reviews-grid" id="reviewsContainer">
+            <!-- Les 50 commentaires vont apparaitre ici automatiquement -->
+        </div>
+    </div>
+</div>
+
+<script>
+    const pseudos = ["Skander.X", "Yassine_Tns", "Aziz.07", "Rayen_G", "Mehdi.99", "Firas.Z", "Amine.B", "Wassim.K", "Ali_TN", "Omar.D", "Kais.12", "Hamza.M", "Ilies.T", "Sami.99", "Bilel.X", "Youssef_7", "Zied.B", "Nader.K", "Aymen_Z", "Walid.T", "Slim.M", "Hassen.D", "Tarek.1", "Fadi_TN", "Hatem.C", "Malek.X", "Rami.M", "Wael.B", "Anis.T", "Seif.00", "Nassim_X", "Karim.T", "Majed.Z", "Adem.99", "Khaled.B", "Taha_TN", "Baha.1", "Chadi.X", "Fares.T", "Ghaith.M", "Hichem.B", "Issam.T", "Jasser.X", "Kamel.M", "Lamine.T", "Moez.B", "Nizar.X", "Oussama.T", "Rafik.M", "Sofiene.X"];
+    
+    const messages = ["vrmnt un boss", "c carre mrc", "wlh top service tayara", "chay kbir", "kima l3ada", "rjoulia meilleur prix", "nansahkom bih", "rapide w mriguel", "ty hbb", "prix tayara barcha", "service pro", "fi wa9tou", "mrc pour la rapidite", "tres bon service", "wlh a7sen we7ed", "c bon activation temchi", "compte mriguel", "merci frr", "top du top", "chokran", "meilleur site", "trust 100", "fi beli scam wlh tla3 s7i7", "a7sen aswem", "service 5 sur 5", "rapide w securise", "dima men 3andou", "bravo rjoulia", "tayara", "mrc bcp", "valide", "site mriguel", "khedma ndhifa", "merci 5ouya", "aswem behya", "activation ultra rapide", "compte yemchi 5 sur 5", "m3alem", "wlh rjel", "merci pour le compte", "top service", "recommande fort", "c nickel", "rien a dire", "parfait mrc", "au top", "service de qualite", "mriguel", "merci pr la confiance", "super rapide"];
+
+    const container = document.getElementById('reviewsContainer');
+
+    for (let i = 0; i < 50; i++) {
+        const card = document.createElement('div');
+        card.className = 'review-card';
+        card.innerHTML = `
+            <div class="review-user">${pseudos[i]}</div>
+            <div class="review-note">Note: 5/5</div>
+            <div class="review-text">"${messages[i]}"</div>
+        `;
+        container.appendChild(card);
+    }
+</script>
+
+</body>
+</html>
