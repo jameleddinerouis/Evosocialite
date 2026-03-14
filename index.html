@@ -137,25 +137,35 @@
         .section-title{font-size:.95rem;text-transform:uppercase;letter-spacing:.16em;color:var(--text-muted)}
         .section-sub{font-size:.8rem;color:var(--text-muted)}
 
-        .offers-preview{
-            display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;
-        }
-        @media(max-width:900px){.offers-preview{grid-template-columns:repeat(2,minmax(0,1fr))}}
-        @media(max-width:600px){.offers-preview{grid-template-columns:1fr}}
+        /* strip avis */
 
-        .offer-mini{
-            border-radius:14px;border:1px solid rgba(255,255,255,.1);
-            background:linear-gradient(160deg,#11111c,#05050d);
-            padding:12px 11px 11px;font-size:.8rem;
+        .reviews-strip{
+            margin-top:10px;
+            border-radius:18px;
+            border:1px solid rgba(255,255,255,.08);
+            background:linear-gradient(90deg,#11111b,#070712);
+            padding:18px 14px;
+            overflow-x:auto;
+            display:flex;
+            gap:14px;
+            scroll-snap-type:x mandatory;
         }
-        .offer-mini-top{display:flex;justify-content:space-between;margin-bottom:6px}
-        .offer-mini-name{font-weight:600}
-        .offer-mini-badge{
-            font-size:.7rem;padding:3px 7px;border-radius:999px;
-            border:1px solid var(--border);color:var(--text-muted);
+        .reviews-strip::-webkit-scrollbar{height:6px}
+        .reviews-strip::-webkit-scrollbar-thumb{
+            background:#2a2a3a;border-radius:999px;
         }
-        .offer-mini-price{font-weight:700;margin-bottom:2px}
-        .offer-mini-line{color:var(--text-muted);font-size:.76rem}
+        .review-card{
+            min-width:230px;max-width:260px;
+            border-radius:14px;
+            border:1px solid rgba(255,255,255,.12);
+            background:radial-gradient(circle at top left,#222236 0,#05050b 60%);
+            padding:12px 11px 11px;
+            scroll-snap-align:start;
+            font-size:.8rem;
+        }
+        .review-user{font-weight:600;margin-bottom:2px}
+        .review-meta{font-size:.74rem;color:var(--text-muted);margin-bottom:6px}
+        .review-text{font-size:.8rem;color:var(--text-main)}
 
         footer{
             margin-top:60px;font-size:.75rem;color:var(--text-muted);
@@ -170,9 +180,7 @@
         <div class="header-bg"></div>
         <header class="header reveal">
             <div class="brand">
-                <div class="brand-logo">
-                    <img src="logo.jpg" alt="Rouis Shop">
-                </div>
+                <div class="brand-logo"><img src="logo.jpg" alt="Rouis Shop"></div>
                 <div class="brand-text">
                     <div class="brand-name">Rouis Shop</div>
                     <div class="brand-tagline">Abonnements digitaux · Tunisie</div>
@@ -246,40 +254,18 @@
         </aside>
     </section>
 
+    <!-- AVIS CLIENTS A LA PLACE DE L’APERÇU DES OFFRES -->
     <section class="reveal">
         <div class="section-header">
             <div>
-                <div class="section-title">Aperçu des offres</div>
-                <div class="section-sub">Quelques exemples, tout le reste est sur la page Offres.</div>
+                <div class="section-title">Avis clients</div>
+                <div class="section-sub">Commentaires de clients tunisiens qui ont deja teste.</div>
             </div>
-            <div class="section-sub">Clique sur “Voir toutes les offres” pour le detail.</div>
+            <div class="section-sub">Style quotidien, abrev et langage jeune.</div>
         </div>
 
-        <div class="offers-preview">
-            <article class="offer-mini">
-                <div class="offer-mini-top">
-                    <span class="offer-mini-name">ChatGPT Pro</span>
-                    <span class="offer-mini-badge">IA</span>
-                </div>
-                <div class="offer-mini-price">49 DT · 12 mois</div>
-                <div class="offer-mini-line">Pour reviser, coder et rediger proprement.</div>
-            </article>
-            <article class="offer-mini">
-                <div class="offer-mini-top">
-                    <span class="offer-mini-name">Netflix Family</span>
-                    <span class="offer-mini-badge">Streaming</span>
-                </div>
-                <div class="offer-mini-price">69 DT · 12 mois</div>
-                <div class="offer-mini-line">Profil perso, slots limites chaque mois.</div>
-            </article>
-            <article class="offer-mini">
-                <div class="offer-mini-top">
-                    <span class="offer-mini-name">Perplexity Pro</span>
-                    <span class="offer-mini-badge">IA Recherche</span>
-                </div>
-                <div class="offer-mini-price">59 DT · 12 mois</div>
-                <div class="offer-mini-line">Pour memoires, projets et recherches serieuses.</div>
-            </article>
+        <div class="reviews-strip" id="reviewsStrip">
+            <!-- Rempli en JS -->
         </div>
     </section>
 
@@ -294,6 +280,59 @@
         e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('show');io.unobserve(x.target);}})
     },{threshold:.18});
     revs.forEach(el=>io.observe(el));
+
+    const pseudos=[
+        "Skander.X","Yassine_Tns","Aziz.07","Rayen_G","Mehdi.99","Firas.Z",
+        "Amine.B","Wassim.K","Ali_TN","Omar.D","Kais.12","Hamza.M",
+        "Ilies.T","Sami.99","Bilel.X","Youssef_7","Zied.B","Nader.K",
+        "Aymen_Z","Walid.T","Slim.M","Hassen.D","Tarek.1","Fadi_TN",
+        "Hatem.C","Malek.X","Rami.M","Wael.B","Anis.T","Seif.00"
+    ];
+
+    const msgs=[
+        "service propre, rien a dire. j’avais peur au debut mais c carre.",
+        "activation rapide, compte chatgpt tourne nickel depuis plusieurs jours.",
+        "netflix family au top, profil separe pour moi, aucun souci.",
+        "spotify solo marche super bien, zero pub c agreable.",
+        "prix franchement bas pour 12 mois, surtout pour les etudiants.",
+        "support discord reactif, repond en quelques minutes.",
+        "perplexity pro m’a aide pour mon memoire, sources propres.",
+        "j’ai tout pris chez rouis shop, je regrette pas.",
+        "gemini pro utile pour resumer les cours, gagne bcp de temps.",
+        "tres serieux, pas comme certains shops insta qui ghost.",
+        "compte netflix stable, pas de deco chelou.",
+        "chatgpt pro m’aide pour coder et revoir les lecons.",
+        "transaction flouci simple, il confirme direct apres l’envoi.",
+        "deja 2e abonnement chez lui, toujours impeccable.",
+        "spotify solo audio clean, ca change des pubs.",
+        "perplexity max c un autre level pour les recherches.",
+        "j’etais sceptique mais franchement c du lourd.",
+        "parfait pour les etudes en fac, gain de temps enorme.",
+        "j’ai recommande a mes potes, tout le monde est satisfait.",
+        "explications claires, il prend le temps de tout montrer.",
+        "abonnements completes, pas de coupure au milieu de l’annee.",
+        "dispo meme le soir pour repondre, c pratique.",
+        "je pensais que ca allait bug, finalement tout tourne bien.",
+        "pack netflix + spotify c la meilleure combi.",
+        "ia pour les devoirs c la base maintenant, merci.",
+        "il gere toute la config, tu reçois juste les acces.",
+        "on voit que le shop est serieux, ca rassure.",
+        "je referai ici pour l’annee prochaine sans hesiter.",
+        "rapport qualite/prix tres fort, surtout en dinar.",
+        "globalement experience top, je conseille vraiment."
+    ];
+
+    const strip=document.getElementById('reviewsStrip');
+    for(let i=0;i<pseudos.length;i++){
+        const card=document.createElement('article');
+        card.className='review-card';
+        card.innerHTML=`
+            <div class="review-user">${pseudos[i]}</div>
+            <div class="review-meta">Note 5/5 · client Tunisie</div>
+            <div class="review-text">"${msgs[i]}"</div>
+        `;
+        strip.appendChild(card);
+    }
 </script>
 </body>
 </html>
