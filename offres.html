@@ -1,1 +1,227 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rouis Shop — Offres 12 mois</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root{--bg:#050509;--border:#20202a;--text-main:#f9f9ff;--text-muted:#9b9bb0;}
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{
+            font-family:'Inter',sans-serif;
+            background:radial-gradient(circle at top,#181824 0,#050509 55%);
+            color:var(--text-main);min-height:100vh;
+        }
+        a{text-decoration:none;color:inherit}
+        .page{max-width:1120px;margin:0 auto;padding:24px 16px 80px}
+
+        .header{display:flex;align-items:center;justify-content:space-between;margin-bottom:40px}
+        .brand{display:flex;align-items:center;gap:10px}
+        .brand-logo{
+            width:36px;height:36px;border-radius:999px;border:1px solid var(--border);
+            background:#111119;overflow:hidden;
+        }
+        .brand-logo img{width:100%;height:100%;object-fit:contain}
+        .brand-text{display:flex;flex-direction:column;gap:2px}
+        .brand-name{font-size:.9rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+        .brand-tagline{font-size:.78rem;color:var(--text-muted)}
+        .btn-back{
+            font-size:.8rem;padding:8px 14px;border-radius:999px;
+            border:1px solid var(--border);background:rgba(10,10,18,.95);color:var(--text-main);
+        }
+        .btn-back:hover{border-color:#fff}
+
+        h1{
+            font-size:1.4rem;text-transform:uppercase;
+            letter-spacing:.18em;color:var(--text-muted);margin-bottom:10px;
+        }
+        .intro{font-size:.9rem;color:var(--text-muted);margin-bottom:26px}
+
+        .offers-grid{
+            display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;
+        }
+        @media(max-width:900px){.offers-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+        @media(max-width:600px){.offers-grid{grid-template-columns:1fr}}
+
+        .offer-card{
+            position:relative;overflow:hidden;border-radius:18px;
+            border:1px solid rgba(255,255,255,.12);
+            background:radial-gradient(circle at top,rgba(255,255,255,.18),transparent 60%),
+                       linear-gradient(160deg,#11111c,#05050d);
+            padding:16px 14px 14px;cursor:pointer;
+            transform-style:preserve-3d;
+            transition:transform .25s,box-shadow .25s,border-color .25s;
+        }
+        .offer-card::before{
+            content:"";position:absolute;inset:-40%;
+            background:radial-gradient(circle at top left,rgba(255,255,255,.4),transparent 60%);
+            opacity:0;transition:opacity .35s;pointer-events:none;
+        }
+        .offer-card:hover{
+            transform:translateY(-6px) scale(1.01);
+            box-shadow:0 24px 55px rgba(0,0,0,.9);
+            border-color:rgba(255,255,255,.4);
+        }
+        .offer-card:hover::before{opacity:1}
+        .offer-inner{position:relative;z-index:2}
+
+        .offer-top{display:flex;justify-content:space-between;margin-bottom:8px}
+        .offer-app{font-size:.86rem;font-weight:600}
+        .offer-badge{
+            font-size:.7rem;padding:3px 8px;border-radius:999px;
+            border:1px solid var(--border);color:var(--text-muted);
+        }
+        .offer-price{font-size:1.25rem;font-weight:800;margin-bottom:2px}
+        .offer-period{font-size:.78rem;color:var(--text-muted);margin-bottom:8px}
+        .offer-line{font-size:.76rem;color:var(--text-muted);margin-bottom:10px}
+        .offer-cta{display:flex;justify-content:space-between;align-items:center;font-size:.78rem}
+        .offer-note{color:var(--text-muted)}
+        .btn-mini{
+            padding:8px 12px;border-radius:999px;border:1px solid #fff;
+            background:#fff;color:#000;font-weight:600;font-size:.74rem;
+            text-transform:uppercase;letter-spacing:.1em;
+        }
+
+        footer{
+            margin-top:40px;font-size:.75rem;color:var(--text-muted);
+            border-top:1px solid var(--border);padding-top:16px;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <header class="header">
+        <div class="brand">
+            <div class="brand-logo"><img src="logo.jpg" alt="Rouis Shop"></div>
+            <div class="brand-text">
+                <div class="brand-name">Rouis Shop</div>
+                <div class="brand-tagline">Abonnements digitaux · Tunisie</div>
+            </div>
+        </div>
+        <a href="index.html" class="btn-back">Retour à l’accueil</a>
+    </header>
+
+    <h1>Offres 12 mois</h1>
+    <p class="intro">
+        Clique sur une carte pour ouvrir la page detaillee avec bouton Flouci et tous les details de l’abonnement.
+    </p>
+
+    <div class="offers-grid">
+        <article class="offer-card" onclick="location.href='produit.html?id=chatgpt'">
+            <div class="offer-inner">
+                <div class="offer-top">
+                    <div class="offer-app">ChatGPT Pro</div>
+                    <div class="offer-badge">IA</div>
+                </div>
+                <div class="offer-price">49 DT</div>
+                <div class="offer-period">Abonnement 12 mois</div>
+                <div class="offer-line">
+                    Acces complet pour reviser, coder, rediger et trouver des idees business.
+                </div>
+                <div class="offer-cta">
+                    <span class="offer-note">Brief rapide sur Discord.</span>
+                    <span class="btn-mini">Voir plus</span>
+                </div>
+            </div>
+        </article>
+
+        <article class="offer-card" onclick="location.href='produit.html?id=gemini'">
+            <div class="offer-inner">
+                <div class="offer-top">
+                    <div class="offer-app">Gemini Pro</div>
+                    <div class="offer-badge">IA</div>
+                </div>
+                <div class="offer-price">49 DT</div>
+                <div class="offer-period">Abonnement 12 mois</div>
+                <div class="offer-line">
+                    Ideal pour docs longs, presentations, revisions et brainstorms.
+                </div>
+                <div class="offer-cta">
+                    <span class="offer-note">Compte configure pour toi.</span>
+                    <span class="btn-mini">Voir plus</span>
+                </div>
+            </div>
+        </article>
+
+        <article class="offer-card" onclick="location.href='produit.html?id=netflix'">
+            <div class="offer-inner">
+                <div class="offer-top">
+                    <div class="offer-app">Netflix Family</div>
+                    <div class="offer-badge">Streaming</div>
+                </div>
+                <div class="offer-price">69 DT</div>
+                <div class="offer-period">12 mois · 6 profils</div>
+                <div class="offer-line">
+                    Profil Netflix perso, historique et recommandations separees.
+                </div>
+                <div class="offer-cta">
+                    <span class="offer-note">Slots limites chaque mois.</span>
+                    <span class="btn-mini">Voir plus</span>
+                </div>
+            </div>
+        </article>
+
+        <article class="offer-card" onclick="location.href='produit.html?id=spotify'">
+            <div class="offer-inner">
+                <div class="offer-top">
+                    <div class="offer-app">Spotify Solo</div>
+                    <div class="offer-badge">Musique</div>
+                </div>
+                <div class="offer-price">39 DT</div>
+                <div class="offer-period">Abonnement 12 mois</div>
+                <div class="offer-line">
+                    Compte individuel sans pub, playlists gardees toute l’annee.
+                </div>
+                <div class="offer-cta">
+                    <span class="offer-note">Profil perso, pas partage.</span>
+                    <span class="btn-mini">Voir plus</span>
+                </div>
+            </div>
+        </article>
+
+        <article class="offer-card" onclick="location.href='produit.html?id=perplex_pro'">
+            <div class="offer-inner">
+                <div class="offer-top">
+                    <div class="offer-app">Perplexity Pro</div>
+                    <div class="offer-badge">IA Recherche</div>
+                </div>
+                <div class="offer-price">59 DT</div>
+                <div class="offer-period">Abonnement 12 mois</div>
+                <div class="offer-line">
+                    Pour recherches avancees, memoires et projets avec sources citees.
+                </div>
+                <div class="offer-cta">
+                    <span class="offer-note">Compte dedie pour toi.</span>
+                    <span class="btn-mini">Voir plus</span>
+                </div>
+            </div>
+        </article>
+
+        <article class="offer-card" onclick="location.href='produit.html?id=perplex_max'">
+            <div class="offer-inner">
+                <div class="offer-top">
+                    <div class="offer-app">Perplexity Max</div>
+                    <div class="offer-badge">IA Premium</div>
+                </div>
+                <div class="offer-price">179 DT</div>
+                <div class="offer-period">Abonnement 12 mois</div>
+                <div class="offer-line">
+                    Niveau maximal de Perplexity pour usage intense et pro.
+                </div>
+                <div class="offer-cta">
+                    <span class="offer-note">Places limitees, sur demande.</span>
+                    <span class="btn-mini">Voir plus</span>
+                </div>
+            </div>
+        </article>
+    </div>
+
+    <footer>
+        Rouis Shop — Ce site n’est pas affilie aux plateformes mentionnees.
+    </footer>
+</div>
+</body>
+</html>
 
