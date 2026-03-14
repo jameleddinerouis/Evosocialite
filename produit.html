@@ -1,1 +1,256 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rouis Shop — Détail de l’offre</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root{--bg:#050509;--border:#20202a;--text-main:#f9f9ff;--text-muted:#9b9bb0;}
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{
+            font-family:'Inter',sans-serif;
+            background:radial-gradient(circle at top,#181824 0,#050509 55%);
+            color:var(--text-main);min-height:100vh;
+        }
+        a{text-decoration:none;color:inherit}
+        .page{max-width:900px;margin:0 auto;padding:24px 16px 80px}
+
+        .header{display:flex;align-items:center;justify-content:space-between;margin-bottom:40px}
+        .brand{display:flex;align-items:center;gap:10px}
+        .brand-logo{
+            width:34px;height:34px;border-radius:999px;border:1px solid var(--border);
+            background:#111119;overflow:hidden;
+        }
+        .brand-logo img{width:100%;height:100%;object-fit:contain}
+        .brand-text{display:flex;flex-direction:column;gap:2px}
+        .brand-name{font-size:.9rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+        .brand-tagline{font-size:.78rem;color:var(--text-muted)}
+        .btn-back{
+            font-size:.8rem;padding:8px 14px;border-radius:999px;
+            border:1px solid var(--border);background:rgba(10,10,18,.95);color:var(--text-main);
+        }
+        .btn-back:hover{border-color:#fff}
+
+        .card{
+            border-radius:24px;border:1px solid rgba(255,255,255,.12);
+            background:radial-gradient(circle at top,rgba(255,255,255,.2),transparent 60%),
+                       linear-gradient(150deg,#151524,#05050d);
+            padding:26px 20px 22px;box-shadow:0 26px 70px rgba(0,0,0,.9);
+            position:relative;overflow:hidden;
+        }
+        .card::before{
+            content:"";position:absolute;inset:-60%;
+            background:radial-gradient(circle at top,rgba(255,255,255,.4),transparent 60%);
+            opacity:0;transform:translateY(40px);transition:opacity .5s,transform .5s;
+        }
+        .card.show::before{opacity:1;transform:translateY(0)}
+
+        .top-row{display:flex;gap:20px;align-items:center;margin-bottom:18px}
+        @media(max-width:700px){.top-row{flex-direction:column;align-items:flex-start}}
+        .prod-logo-wrap{
+            width:72px;height:72px;border-radius:20px;background:#111119;
+            border:1px solid rgba(255,255,255,.18);overflow:hidden;
+        }
+        .prod-logo-wrap img{width:100%;height:100%;object-fit:contain}
+        .prod-main{flex:1}
+        .prod-title{font-size:1.4rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+        .prod-sub{font-size:.82rem;color:var(--text-muted);margin-bottom:4px}
+        .prod-price{font-size:2rem;font-weight:900;margin-top:4px}
+
+        .pill-row{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 18px}
+        .pill{
+            font-size:.74rem;padding:4px 10px;border-radius:999px;
+            border:1px solid var(--border);color:var(--text-muted);background:rgba(8,8,16,.9);
+        }
+
+        .desc{font-size:.87rem;color:var(--text-muted);line-height:1.6;margin-bottom:18px}
+        .bullets{font-size:.82rem;color:var(--text-muted);margin-bottom:20px;padding-left:18px}
+        .bullets li{margin-bottom:4px}
+
+        .btns{display:flex;flex-direction:column;gap:10px;margin-top:6px}
+        .btn-full{
+            display:block;text-align:center;padding:13px 18px;border-radius:999px;
+            border:1px solid #fff;background:#fff;color:#000;font-size:.9rem;
+            font-weight:600;text-transform:uppercase;letter-spacing:.08em;
+        }
+        .btn-full:hover{opacity:.9}
+        .btn-outline{
+            display:block;text-align:center;padding:12px 18px;border-radius:999px;
+            border:1px solid var(--border);background:rgba(5,5,12,.96);
+            color:var(--text-main);font-size:.83rem;
+        }
+        .btn-outline:hover{border-color:#fff}
+        .small-note{margin-top:10px;font-size:.75rem;color:var(--text-muted)}
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <header class="header">
+        <div class="brand">
+            <div class="brand-logo"><img src="logo.jpg" alt="Rouis Shop"></div>
+            <div class="brand-text">
+                <div class="brand-name">Rouis Shop</div>
+                <div class="brand-tagline">Abonnements digitaux · Tunisie</div>
+            </div>
+        </div>
+        <a href="offres.html" class="btn-back">← Toutes les offres</a>
+    </header>
+
+    <div class="card" id="card">
+        <div class="top-row">
+            <div class="prod-logo-wrap">
+                <img id="prodImg" src="" alt="">
+            </div>
+            <div class="prod-main">
+                <div class="prod-title" id="prodTitle">Chargement…</div>
+                <div class="prod-sub" id="prodSub">Abonnement 12 mois</div>
+                <div class="prod-price" id="prodPrice">-- DT</div>
+            </div>
+        </div>
+
+        <div class="pill-row" id="pillRow"></div>
+
+        <p class="desc" id="prodDesc"></p>
+
+        <ul class="bullets" id="prodBullets"></ul>
+
+        <div class="btns">
+            <a href="https://LIEN_FLOUCI" target="_blank" class="btn-full">Payer avec Flouci</a>
+            <a href="https://LIEN_DISCORD" target="_blank" class="btn-outline">Nous contacter sur Discord</a>
+            <a href="https://LIEN_FACEBOOK" target="_blank" class="btn-outline">Nous contacter sur Facebook</a>
+        </div>
+
+        <div class="small-note" id="prodNote">
+            Apres paiement, envoie une capture d’ecran sur Discord ou Facebook pour valider l’activation.
+        </div>
+    </div>
+
+</div>
+
+<script>
+const produits={
+    chatgpt:{
+        titre:"ChatGPT Pro",
+        sous:"IA · Abonnement 12 mois",
+        prix:"49 DT",
+        img:"logo_chatgpt.png",
+        pills:["IA generative","Ideal etudes / code","Acces 12 mois"],
+        desc:"Acces complet a ChatGPT Pro pendant un an pour t’aider a reviser, coder, rediger et trouver des idees business proprement.",
+        bullets:[
+            "Compte ou acces dedie configure pour toi.",
+            "Utilisation conseillee pour cours, projets et presentations.",
+            "Support en cas de question sur l’utilisation."
+        ],
+        note:"Parfait si tu veux une IA generaliste qui t’aide sur tout au quotidien."
+    },
+    gemini:{
+        titre:"Gemini Pro",
+        sous:"IA · Abonnement 12 mois",
+        prix:"49 DT",
+        img:"logo_gemini.png",
+        pills:["IA Google","Docs et presentations","Acces 12 mois"],
+        desc:"Gemini Pro est pratique pour les documents longs, les fiches de revision, les presentations et le travail en groupe.",
+        bullets:[
+            "Compte configure pour ton usage.",
+            "Ideal pour resumer des chapitres et preparer des diapos.",
+            "Bon complement de ChatGPT pour les cours."
+        ],
+        note:"Recommande si tu travailles beaucoup sur des docs et slides."
+    },
+    netflix:{
+        titre:"Netflix Family",
+        sous:"Streaming · 6 profils · 12 mois",
+        prix:"69 DT",
+        img:"logo_netflix.png",
+        pills:["Streaming","Profil dedie","6 profils max"],
+        desc:"Profil Netflix perso dans une offre famille, avec ton historique et tes recommandations separees.",
+        bullets:[
+            "Profil perso dans un compte famille existant.",
+            "Jusqu’a 6 profils, slots limites chaque mois.",
+            "Utilisation normale, sans partage abusif."
+        ],
+        note:"Ideal pour profiter de Netflix toute l’annee sans te prendre la tete."
+    },
+    spotify:{
+        titre:"Spotify Solo",
+        sous:"Musique · Abonnement 12 mois",
+        prix:"39 DT",
+        img:"logo_spotify.png",
+        pills:["Musique","Compte perso","Sans pub"],
+        desc:"Compte Spotify individuel sans pub, avec qualite audio maximale et sauvegarde de toutes tes playlists.",
+        bullets:[
+            "Compte perso ou profil dedie selon le setup.",
+            "Fonctionne sur tel, PC, tablette et TV compatible.",
+            "Aucun spot publicitaire pendant la duree."
+        ],
+        note:"Parfait si tu ecoutes de la musique tous les jours."
+    },
+    perplex_pro:{
+        titre:"Perplexity Pro",
+        sous:"IA Recherche · Abonnement 12 mois",
+        prix:"59 DT",
+        img:"logo_perplexity.png",
+        pills:["Recherche avancee","Sources citees","Acces 12 mois"],
+        desc:"Perplexity Pro t’aide pour les recherches serieuses, memoires, projets et veille, avec des reponses basees sur des sources claires.",
+        bullets:[
+            "Compte dedie pour toi uniquement.",
+            "Ideal pour dossiers, memoires et travaux longs.",
+            "Les reponses incluent les sources a verifier."
+        ],
+        note:"Recommande pour les etudiants et personnes qui veulent des infos fiables."
+    },
+    perplex_max:{
+        titre:"Perplexity Max",
+        sous:"IA Premium · Abonnement 12 mois",
+        prix:"179 DT",
+        img:"logo_perplexity.png",
+        pills:["Niveau maximal","Usage intense","Places limitees"],
+        desc:"Perplexity Max donne le meilleur niveau disponible pour tes projets, ton business ou tes etudes avancees.",
+        bullets:[
+            "Acces reserve, nombre de places limite.",
+            "Ideal pour usage pro ou charge de travail elevee.",
+            "A privilegier si tu utilises l’IA tous les jours."
+        ],
+        note:"A prendre si tu veux le niveau le plus eleve sans te poser de questions."
+    }
+};
+
+function chargerProduit(){
+    const params=new URLSearchParams(window.location.search);
+    const id=params.get('id');
+    const data=produits[id]||produits.chatgpt;
+
+    document.title="Rouis Shop — "+data.titre;
+    document.getElementById('prodImg').src=data.img;
+    document.getElementById('prodTitle').innerText=data.titre;
+    document.getElementById('prodSub').innerText=data.sous;
+    document.getElementById('prodPrice').innerText=data.prix;
+    document.getElementById('prodDesc').innerText=data.desc;
+    document.getElementById('prodNote').innerText=data.note;
+
+    const pillRow=document.getElementById('pillRow');
+    pillRow.innerHTML="";
+    data.pills.forEach(p=>{
+        const span=document.createElement('span');
+        span.className='pill';
+        span.innerText=p;
+        pillRow.appendChild(span);
+    });
+
+    const ul=document.getElementById('prodBullets');
+    ul.innerHTML="";
+    data.bullets.forEach(b=>{
+        const li=document.createElement('li');
+        li.innerText=b;
+        ul.appendChild(li);
+    });
+
+    document.getElementById('card').classList.add('show');
+}
+chargerProduit();
+</script>
+</body>
+</html>
 
